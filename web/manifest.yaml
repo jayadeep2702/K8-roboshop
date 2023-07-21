@@ -26,8 +26,8 @@ kind: Service
 metadata:
   name: web-service
 spec:
+  type: LoadBalancer
   selector:
-    type: LoadBalancer
     name: web
     tier: frontend
   ports:
