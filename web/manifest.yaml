@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web
+  labels:
+    name: web
+    tier: frontend
+spec:
+  containers:
+    - name: web
+      imagePullPolicy: Always
+      image: jayadeep2702/web:k8
+      resources:
+        requests:
+          cpu: "100m"
+          memory: "120Mi"
+        limits:
+          cpu: "120m"
+          memory: "200Mi"
+      ports:
+        - containerPort: 80
+---
+apiversion: v1
+kind: Service
+metadata:
+  name: web-service
+spec:
+  selector:
+    type: LoadBalancer
+    name: web
+    tier: frontend
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
