@@ -9,8 +9,8 @@ metadata:
     tier: db
 spec:
   containers:
-    - name: user
-      image: jayadeep2702/redis:k8
+    - name: redis
+      image: redis
       imagePullPolicy: Always
       ports:
         - containerpoort: 6379
