@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: user-config
 data:
-  MONGO_URL: "mongodb://mongodb:80/catalogue"
+  MONGO_URL: "mongodb://mongodb:27017/catalogue"
   REDIS_HOST: "redis"
 ---
 apiVersion: v1
