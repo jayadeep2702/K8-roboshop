@@ -1,0 +1,45 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: payment-config
+data:
+  payment_HOST: "payment"
+  USER_HOST: "user"
+  AMQP_HOST: "rabbitmq"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: payment
+  labels:
+    name: payment
+    tier: app
+spec:
+  containers:
+    - name: payment
+      image: jayadeep2702/payment:k8
+      imagePullPolicy: Always
+      envFrom:
+        - configMapRef:
+            name: payment-config
+      resources:
+        requests:
+          cpu: "100m"
+          memory: "100Mi"
+        limits:
+          cpu: "120m"
+          memory: "120Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment
+spec:
+  selector:
+    name: payment
+    tier: app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
