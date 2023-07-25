@@ -14,10 +14,10 @@ spec:
       resources:
         requests:
           cpu: "100m"
-          memory: "120Mi"
+          memory: "128Mi"
         limits:
-          cpu: "120m"
-          memory: "200Mi"
+          cpu: "100m"
+          memory: "128Mi"
       ports:
         - containerPort: 80
 ---
@@ -31,6 +31,6 @@ spec:
     name: web
     tier: frontend
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
+    - protocol: TCP
+      port: 80
+      targetPort: 80
